@@ -4,104 +4,43 @@ An interactive dashboard for comparing Wall Street analyst reports on Maplight T
 
 ---
 
-## Getting Started (First Time Setup)
+## How to Open the Dashboard (One-Time Setup)
 
-You only need to do these steps once.
+No downloads or installation needed. The dashboard runs as a website through Streamlit Community Cloud (free).
 
-### Step 1: Install Python
+### Step 1: Go to Streamlit Cloud
 
-Check if Python is already installed. Open **Terminal** (Mac) or **Command Prompt** (Windows) and type:
+Open your browser and go to: **https://share.streamlit.io**
 
-```
-python3 --version
-```
+### Step 2: Sign in with GitHub
 
-If you see a version number (like `Python 3.11.5`), you're good — skip to Step 2.
+Click **"Sign in with GitHub"** and log in with your GitHub account (the same one that has access to this repo).
 
-If not, download Python from https://www.python.org/downloads/ and install it. During installation on Windows, **check the box that says "Add Python to PATH"**.
+If you don't have a Streamlit Cloud account yet, it will create one automatically when you sign in with GitHub.
 
-### Step 2: Install Git
+### Step 3: Deploy the app
 
-Check if Git is already installed:
+Once you're signed in, click the **"New app"** button (top right corner). You'll see a form — fill it in like this:
 
-```
-git --version
-```
+- **Repository**: `emilyharrison-stack/MPLT-research`
+- **Branch**: `claude/research-dashboard-1EZfh`
+- **Main file path**: `app.py`
 
-If you see a version number, skip to Step 3.
+Then click **"Deploy!"**
 
-If not, download Git from https://git-scm.com/downloads and install it with the default settings.
+### Step 4: Wait about 1 minute
 
-### Step 3: Download the code
+Streamlit will install everything and start the dashboard. You'll see a loading screen, then the dashboard will appear.
 
-Open Terminal (Mac) or Command Prompt (Windows). Navigate to where you want to put the project. For example, to put it on your Desktop:
+### Step 5: Bookmark it
 
-```
-cd ~/Desktop
-```
-
-Then download the code:
-
-```
-git clone https://github.com/emilyharrison-stack/MPLT-research.git
-```
-
-This creates a folder called `MPLT-research` on your Desktop.
-
-Now go into that folder and switch to the right branch:
-
-```
-cd MPLT-research
-git checkout claude/research-dashboard-1EZfh
-```
-
-### Step 4: Install the dashboard dependencies
-
-Still in Terminal, inside the `MPLT-research` folder, run:
-
-```
-pip install -r requirements.txt
-```
-
-This installs Streamlit (the dashboard framework), Plotly (for charts), and Pandas (for data handling). It may take a minute.
+Once it's running, you'll have a URL like `https://emilyharrison-stack-mplt-research-app-xxxxx.streamlit.app`. Bookmark this — you can come back to it anytime. Share the link with teammates and they can use it too.
 
 ---
 
-## Running the Dashboard
+## Using the Dashboard
 
-Every time you want to use the dashboard, open Terminal, go to the project folder, and run:
-
-```
-cd ~/Desktop/MPLT-research
-streamlit run app.py
-```
-
-Your browser will automatically open to `http://localhost:8501` with the dashboard.
-
-To stop the dashboard, go back to Terminal and press `Ctrl+C`.
-
----
-
-## Adding Your Real Data
-
-Right now the dashboard uses sample data. To use your own analyst reports:
-
-1. Find the `data` folder inside your project:
-   - **Mac**: `~/Desktop/MPLT-research/data/`
-   - **Windows**: `C:\Users\YourName\Desktop\MPLT-research\data\`
-
-2. Drop your CSV or Excel files into that `data` folder
-
-3. For PDF reports, create a subfolder called `reports` inside `data` and put them there:
-   - `MPLT-research/data/reports/morgan_stanley_mplt.pdf`
-   - `MPLT-research/data/reports/goldman_sachs_mplt.pdf`
-   - etc.
-
-4. Let me know the file names and I'll update the code to read from your real files instead of the sample data
-
----
-
-## What's in the Dashboard
+Once the dashboard is open in your browser, use the **left sidebar** to switch between views:
 
 ### Overview
 A snapshot of all analyst coverage — ratings, price targets, and key themes at a glance.
@@ -120,12 +59,36 @@ Shows how analysts covering BMS, Neurocrine, and Acadia are talking about Maplig
 
 ---
 
+## Adding Your Real Data
+
+Right now the dashboard uses sample data. To swap in your real analyst reports:
+
+### How to upload files through GitHub (no terminal needed)
+
+1. Go to the repo on GitHub: https://github.com/emilyharrison-stack/MPLT-research
+2. Make sure you're on the branch `claude/research-dashboard-1EZfh` (there's a dropdown near the top left that says the branch name — click it and select the right one)
+3. Click into the **`data`** folder
+4. Click the **"Add file"** button (top right) and choose **"Upload files"**
+5. Drag and drop your CSV or Excel files
+6. At the bottom, click the green **"Commit changes"** button
+
+The dashboard on Streamlit Cloud will automatically pick up the new files within a few minutes. (You may need to click the "Rerun" button in the top right of the dashboard, or click the three-dot menu and choose "Reboot app".)
+
+### What files to upload
+
+- **CSV or Excel files** with analyst estimates — put them directly in the `data` folder
+- **PDF reports** — put them in `data/reports/` (you may need to create that subfolder)
+
+Once your files are uploaded, let me know the file names and I'll update the code to read from your real data instead of the sample data.
+
+---
+
 ## Troubleshooting
 
-**"command not found: streamlit"** — Try `python3 -m streamlit run app.py` instead.
+**Dashboard shows an error after uploading new data** — The code needs to be updated to read your specific file format. Share the file names and column headers with me and I'll update it.
 
-**"No module named streamlit"** — Run `pip install -r requirements.txt` again.
+**Can't find the repo when deploying** — Make sure you're signed into GitHub with the account that has access to `emilyharrison-stack/MPLT-research`.
 
-**Dashboard won't open in browser** — Manually go to `http://localhost:8501` in your browser.
+**Dashboard is slow to load** — The first load after a period of inactivity takes about 30 seconds. After that it's fast.
 
 **Need help?** — Open an issue on this GitHub repo or reach out to the team.
